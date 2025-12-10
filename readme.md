@@ -12,3 +12,15 @@ I'll be decoding the outputs so we could in theory, read live-feed of the log fi
 1) Install requirements using 'pip3 install -r requirements'
 2) Edit 'main.py' and set your MTGA root folder there
 3) Run it and have fun
+
+### Inspecting database structure
+Use `inspect_mtga_db.py` to summarize the SQLite contents of downloaded `.mtga` files.
+
+```bash
+python inspect_mtga_db.py /path/to/MTGA_Data/Downloads/Raw
+```
+
+Key options:
+- `--recursive` search subdirectories for `.mtga` files.
+- `--include-row-count` include counts for each table (may be slow on large databases).
+- `--output report.json` write the JSON summary to a file instead of stdout.
