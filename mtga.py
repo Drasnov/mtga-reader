@@ -28,11 +28,11 @@ class mtga_reader:
                 self.set_language(lang)
                 self.get_enums()
 
-	def dict_factory(self, cursor, row):
-		d = {}
-		for idx, col in enumerate(cursor.description):
-			d[col[0]] = row[idx]
-		return d
+        def dict_factory(self, cursor, row):
+                d = {}
+                for idx, col in enumerate(cursor.description):
+                    d[col[0]] = row[idx]
+                return d
 
         def get_databases(self):
                 try:
@@ -170,33 +170,33 @@ class mtga_reader:
                         ret.append(self.get_card_by_id(linha['GrpId'], get_art))
                 return ret
 
-	def find_card_art_file(self, card_id):
-		ret = {
-			'image': None,
-			'util': None
-		}
+        def find_card_art_file(self, card_id):
+                ret = {
+                    'image': None,
+                    'util': None
+                }
 
-		for file_name in glob.glob(f"{self.mtga_assets_dir}{str(card_id).zfill(6)}*.mtga"):
-			env = UnityPy.load(file_name)
+                for file_name in glob.glob(f"{self.mtga_assets_dir}{str(card_id).zfill(6)}*.mtga"):
+                    env = UnityPy.load(file_name)
 
-			for path, obj in env.container.items():
-				if obj.type.name in ["Texture2D", "Sprite"]:
-					data = obj.read()
-					img_byte_arr = io.BytesIO()
-					data.image.save(img_byte_arr, format='PNG')
+                    for path, obj in env.container.items():
+                        if obj.type.name in ["Texture2D", "Sprite"]:
+                            data = obj.read()
+                            img_byte_arr = io.BytesIO()
+                            data.image.save(img_byte_arr, format='PNG')
 
-					image = np.asarray(bytearray(img_byte_arr.getvalue()), dtype="uint8")
-					image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+                            image = np.asarray(bytearray(img_byte_arr.getvalue()), dtype="uint8")
+                            image = cv2.imdecode(image, cv2.IMREAD_COLOR)
 
-					if 'Util' in path:
-						ret['util'] = image
-					if f'{card_id}_AIF.' in path:
-						ret['image'] = image
-					else:
-						tmp = path.split(".")[0].split("_")[-1]
-						ret[tmp] = image
-		return ret
+                            if 'Util' in path:
+                                ret['util'] = image
+                            if f'{card_id}_AIF.' in path:
+                                ret['image'] = image
+                            else:
+                                tmp = path.split(".")[0].split("_")[-1]
+                                ret[tmp] = image
+                return ret
 
-	def get_card_art_by_id(self, card_id):
-		tmp = self.find_card_art_file(card_id)
-		return tmp
+        def get_card_art_by_id(self, card_id):
+                tmp = self.find_card_art_file(card_id)
+                return tmp
