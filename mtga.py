@@ -6,63 +6,69 @@ import UnityPy
 import cv2
 import numpy as np
 
-class mtga_reader:
-        mtga_root_dir = None
-        mtga_data_dir = None
-        mtga_assets_dir = None
-        mtga_raw_dir = None
-        lang = None
-        lang_column = None
-        connections = {}
-        enums = {}
 
-        def __init__(self, mtga_root_dir, lang='en'):
-                self.lang = lang
-                self.mtga_root_dir = mtga_root_dir
-                self.mtga_data_dir = os.path.join(self.mtga_root_dir, "MTGA_Data")
-                self.mtga_assets_dir = os.path.join(self.mtga_data_dir, "Downloads", "AssetBundle")
-                self.mtga_raw_dir = os.path.join(self.mtga_data_dir, "Downloads", "Raw")
-                self.get_databases()
-                self.set_language(lang)
-                self.get_enums()
+class mtga_reader:
+	mtga_root_dir = None
+	mtga_data_dir = None
+	mtga_assets_dir = None
+	mtga_raw_dir = None
+	lang = None
+	lang_column = None
+	connections = {}
+	enums = {}
+
+	def __init__(self, mtga_root_dir, lang='en'):
+		self.lang = lang
+		self.mtga_root_dir = mtga_root_dir
+		self.mtga_data_dir = os.path.join(self.mtga_root_dir, "MTGA_Data")
+		self.mtga_assets_dir = os.path.join(self.mtga_data_dir, "Downloads", "AssetBundle")
+		self.mtga_raw_dir = os.path.join(self.mtga_data_dir, "Downloads", "Raw")
+		self.get_databases()
+		self.set_language(lang)
+		self.get_enums()
 
 	def dict_factory(self, cursor, row):
-	    d = {}
-	    for idx, col in enumerate(cursor.description):
-	        d[col[0]] = row[idx]
-	    return d
+		d = {}
+		for idx, col in enumerate(cursor.description):
+			d[col[0]] = row[idx]
+		return d
 
-        def get_databases(self):
-                try:
-                        dbs = ['ArtCropDatabase','CardDatabase','ClientLocalization','altArtCredits','altFlavorTexts','credits']
-                        for db in dbs:
-                                self.connections[db] = sqlite3.connect(max(glob.glob(os.path.join(self.mtga_raw_dir, f"Raw_{db}_*.mtga")), key=os.path.getctime))
-                                self.connections[db].row_factory = self.dict_factory
-                        return True
-                except Exception as exc:
-                        self.connections = {}
-                        return False
+	def get_databases(self):
+		try:
+			dbs = ['ArtCropDatabase', 'CardDatabase', 'ClientLocalization', 'altArtCredits', 'altFlavorTexts', 'credits']
+			for db in dbs:
+				self.connections[db] = sqlite3.connect(
+					max(
+						glob.glob(os.path.join(self.mtga_raw_dir, f"Raw_{db}_*.mtga")),
+						key=os.path.getctime
+					)
+				)
+				self.connections[db].row_factory = self.dict_factory
+			return True
+		except Exception:
+			self.connections = {}
+			return False
 
-        def set_language(self, lang):
-                """Validate and store the localization column for the chosen language."""
-                cursor = self.connections['CardDatabase'].cursor()
-                cursor.execute('PRAGMA table_info(Localizations)')
-                available_columns = [col['name'] for col in cursor.fetchall() if col['name'].lower() != 'locid']
+	def set_language(self, lang):
+		"""Validate and store the localization column for the chosen language."""
+		cursor = self.connections['CardDatabase'].cursor()
+		cursor.execute('PRAGMA table_info(Localizations)')
+		available_columns = [col['name'] for col in cursor.fetchall() if col['name'].lower() != 'locid']
 
-                normalized_target = lang.replace('-', '').replace('_', '').lower()
-                matched_column = None
+		normalized_target = lang.replace('-', '').replace('_', '').lower()
+		matched_column = None
 
-                for column in available_columns:
-                        normalized_column = column.replace('-', '').replace('_', '').lower()
-                        if normalized_column == normalized_target:
-                                matched_column = column
-                                break
+		for column in available_columns:
+			normalized_column = column.replace('-', '').replace('_', '').lower()
+			if normalized_column == normalized_target:
+				matched_column = column
+				break
 
-                if not matched_column:
-                        raise ValueError(f"Language '{lang}' not available. Options: {', '.join(available_columns)}")
+		if not matched_column:
+			raise ValueError(f"Language '{lang}' not available. Options: {', '.join(available_columns)}")
 
-                self.lang_column = matched_column
-                return matched_column
+		self.lang_column = matched_column
+		return matched_column
 
 	def close(self):
 		for db in self.connections:
@@ -83,16 +89,16 @@ class mtga_reader:
 
 		return True
 
-        def get_card_translation_id(self, text_id):
-                try:
-                        cursor = self.connections['CardDatabase'].cursor()
-                        cursor.execute(f'select "{self.lang_column}" from Localizations WHERE LocId = ?', (text_id,))
-                        ret = []
-                        for linha in cursor.fetchall():
-                                ret.append(linha)
-                        return ret[0][self.lang_column] if ret else None
-                except:
-                        return text_id
+	def get_card_translation_id(self, text_id):
+		try:
+			cursor = self.connections['CardDatabase'].cursor()
+			cursor.execute(f'select "{self.lang_column}" from Localizations WHERE LocId = ?', (text_id,))
+			ret = []
+			for linha in cursor.fetchall():
+				ret.append(linha)
+			return ret[0][self.lang_column] if ret else None
+		except Exception:
+			return text_id
 
 	def get_card_abilities(self, ability_id):
 		try:
@@ -101,46 +107,45 @@ class mtga_reader:
 			ret = []
 			for linha in cursor.fetchall():
 				linha['TextId'] = self.get_card_translation_id(linha['TextId'])
-
 				ret.append(linha)
 			return ret[0] if ret else None
-		except:
+		except Exception:
 			return ability_id
 
 	def get_card_by_id(self, card_id, get_art=True):
-		card = None
 		cursor = self.connections['CardDatabase'].cursor()
 		cursor.execute(f'SELECT * FROM Cards WHERE GrpId = {card_id} LIMIT 1')
 		ret = []
 		for linha in cursor.fetchall():
 			tmp = {}
-			for key,val in linha.items():
+			for key, val in linha.items():
 				if 'TextId' in key or 'TitleId' in key:
-					tmp[key.replace("Id", "").lower()] = val if val == None else self.get_card_translation_id(val)
+					tmp[key.replace("Id", "").lower()] = val if val is None else self.get_card_translation_id(val)
 				elif 'AbilityIds' in key:
-					tmp[key.replace("Id", "").lower()] = val if val == None else self.get_card_abilities(val)
+					tmp[key.replace("Id", "").lower()] = val if val is None else self.get_card_abilities(val)
 				elif 'ArtId' in key:
-					tmp['art'] = val if (val == None or not get_art) else self.get_card_art_by_id(val)
+					tmp['art'] = val if (val is None or not get_art) else self.get_card_art_by_id(val)
 				else:
 					tmp[key] = val
 			ret.append(tmp)
 		return ret[0] if ret else None
 
-        def get_card_by_name(self, card_name, limit=None, get_art=True):
-                card = None
-                cursor = self.connections['CardDatabase'].cursor()
+	def get_card_by_name(self, card_name, limit=None, get_art=True):
+		cursor = self.connections['CardDatabase'].cursor()
 
-                query = f'SELECT GrpId FROM Cards WHERE TitleId = (select LocId from Localizations WHERE "{self.lang_column}" like ?)' \
-                        + (f' LIMIT ?' if limit else '')
-                params = [card_name]
-                if limit:
-                        params.append(limit)
+		query = (
+			f'SELECT GrpId FROM Cards WHERE TitleId = (select LocId from Localizations WHERE "{self.lang_column}" like ?)' \
+			+ (f' LIMIT ?' if limit else '')
+		)
+		params = [card_name]
+		if limit:
+			params.append(limit)
 
-                cursor.execute(query, params)
-                ret = []
-                for linha in cursor.fetchall():
-                        ret.append(self.get_card_by_id(linha['GrpId'], get_art))
-                return ret
+		cursor.execute(query, params)
+		ret = []
+		for linha in cursor.fetchall():
+			ret.append(self.get_card_by_id(linha['GrpId'], get_art))
+		return ret
 
 	def find_card_art_file(self, card_id):
 		ret = {
@@ -151,7 +156,7 @@ class mtga_reader:
 		for file_name in glob.glob(f"{self.mtga_assets_dir}{str(card_id).zfill(6)}*.mtga"):
 			env = UnityPy.load(file_name)
 
-			for path,obj in env.container.items():
+			for path, obj in env.container.items():
 				if obj.type.name in ["Texture2D", "Sprite"]:
 					data = obj.read()
 					img_byte_arr = io.BytesIO()
@@ -162,7 +167,7 @@ class mtga_reader:
 
 					if 'Util' in path:
 						ret['util'] = image
-					if f'{card_id}_AIF.':
+					if f'{card_id}_AIF.' in path:
 						ret['image'] = image
 					else:
 						tmp = path.split(".")[0].split("_")[-1]
