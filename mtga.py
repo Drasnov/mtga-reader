@@ -8,24 +8,25 @@ import numpy as np
 
 
 class mtga_reader:
-	mtga_root_dir = None
-	mtga_data_dir = None
-	mtga_assets_dir = None
-	mtga_raw_dir = None
-	lang = None
-	lang_column = None
-	connections = {}
-	enums = {}
+        mtga_root_dir = None
+        mtga_data_dir = None
+        mtga_assets_dir = None
+        mtga_raw_dir = None
+        lang = None
+        lang_table = None
+        default_lang_table = None
+        connections = {}
+        enums = {}
 
-	def __init__(self, mtga_root_dir, lang='en'):
-		self.lang = lang
-		self.mtga_root_dir = mtga_root_dir
-		self.mtga_data_dir = os.path.join(self.mtga_root_dir, "MTGA_Data")
-		self.mtga_assets_dir = os.path.join(self.mtga_data_dir, "Downloads", "AssetBundle")
-		self.mtga_raw_dir = os.path.join(self.mtga_data_dir, "Downloads", "Raw")
-		self.get_databases()
-		self.set_language(lang)
-		self.get_enums()
+        def __init__(self, mtga_root_dir, lang='en'):
+                self.lang = lang
+                self.mtga_root_dir = mtga_root_dir
+                self.mtga_data_dir = os.path.join(self.mtga_root_dir, "MTGA_Data")
+                self.mtga_assets_dir = os.path.join(self.mtga_data_dir, "Downloads", "AssetBundle")
+                self.mtga_raw_dir = os.path.join(self.mtga_data_dir, "Downloads", "Raw")
+                self.get_databases()
+                self.set_language(lang)
+                self.get_enums()
 
 	def dict_factory(self, cursor, row):
 		d = {}
@@ -33,119 +34,141 @@ class mtga_reader:
 			d[col[0]] = row[idx]
 		return d
 
-	def get_databases(self):
-		try:
-			dbs = ['ArtCropDatabase', 'CardDatabase', 'ClientLocalization', 'altArtCredits', 'altFlavorTexts', 'credits']
-			for db in dbs:
-				self.connections[db] = sqlite3.connect(
-					max(
-						glob.glob(os.path.join(self.mtga_raw_dir, f"Raw_{db}_*.mtga")),
-						key=os.path.getctime
-					)
-				)
-				self.connections[db].row_factory = self.dict_factory
-			return True
-		except Exception:
-			self.connections = {}
-			return False
+        def get_databases(self):
+                try:
+                        dbs = ['ArtCropDatabase', 'CardDatabase', 'ClientLocalization', 'altArtCredits', 'altFlavorTexts', 'credits']
+                        for db in dbs:
+                                self.connections[db] = sqlite3.connect(
+                                        max(
+                                                glob.glob(os.path.join(self.mtga_raw_dir, f"Raw_{db}_*.mtga")),
+                                                key=os.path.getctime
+                                        )
+                                )
+                                self.connections[db].row_factory = self.dict_factory
+                        return True
+                except Exception:
+                        self.connections = {}
+                        return False
 
-	def set_language(self, lang):
-		"""Validate and store the localization column for the chosen language."""
-		cursor = self.connections['CardDatabase'].cursor()
-		cursor.execute('PRAGMA table_info(Localizations)')
-		available_columns = [col['name'] for col in cursor.fetchall() if col['name'].lower() != 'locid']
+        def set_language(self, lang):
+                """Validate and store the localization table for the chosen language."""
+                cursor = self.connections['CardDatabase'].cursor()
+                cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'Localizations_%'")
+                available_tables = [row['name'] for row in cursor.fetchall()]
 
-		normalized_target = lang.replace('-', '').replace('_', '').lower()
-		matched_column = None
+                def normalize(name):
+                        return name.replace('-', '').replace('_', '').lower()
 
-		for column in available_columns:
-			normalized_column = column.replace('-', '').replace('_', '').lower()
-			if normalized_column == normalized_target:
-				matched_column = column
-				break
+                available_langs = {normalize(name.split('Localizations_')[1]): name for name in available_tables}
 
-		if not matched_column:
-			raise ValueError(f"Language '{lang}' not available. Options: {', '.join(available_columns)}")
+                if not available_langs:
+                        raise ValueError("No localization tables found in CardDatabase.")
 
-		self.lang_column = matched_column
-		return matched_column
+                normalized_target = normalize(lang)
+                matched_table = available_langs.get(normalized_target)
 
-	def close(self):
-		for db in self.connections:
-			self.connections[db].close()
-		return True
+                self.default_lang_table = available_langs.get(normalize('enUS')) or next(iter(available_tables))
 
-	def get_enums(self):
-		cursor = self.connections['CardDatabase'].cursor()
-		cursor.execute('Select "Type" FROM Enums GROUP BY "Type"')
+                if not matched_table:
+                        raise ValueError(
+                                f"Language '{lang}' not available. Options: {', '.join(sorted(available_langs.keys()))}"
+                        )
 
-		for linha in cursor.fetchall():
-			self.enums[linha['Type']] = {}
+                self.lang = lang
+                self.lang_table = matched_table
+                return matched_table
 
-		for enum_type in self.enums:
-			cursor.execute(f'Select Value, LocId  FROM Enums WHERE "Type" = "{enum_type}"')
-			for linha in cursor.fetchall():
-				self.enums[enum_type][linha['Value']] = self.get_card_translation_id(linha['LocId'])
+        def close(self):
+                for db in self.connections:
+                        self.connections[db].close()
+                return True
 
-		return True
+        def get_enums(self):
+                cursor = self.connections['CardDatabase'].cursor()
+                cursor.execute('Select "Type" FROM Enums GROUP BY "Type"')
 
-	def get_card_translation_id(self, text_id):
-		try:
-			cursor = self.connections['CardDatabase'].cursor()
-			cursor.execute(f'select "{self.lang_column}" from Localizations WHERE LocId = ?', (text_id,))
-			ret = []
-			for linha in cursor.fetchall():
-				ret.append(linha)
-			return ret[0][self.lang_column] if ret else None
-		except Exception:
-			return text_id
+                for linha in cursor.fetchall():
+                        self.enums[linha['Type']] = {}
 
-	def get_card_abilities(self, ability_id):
-		try:
-			cursor = self.connections['CardDatabase'].cursor()
-			cursor.execute(f'select * from Abilities WHERE Id = {ability_id}')
-			ret = []
-			for linha in cursor.fetchall():
-				linha['TextId'] = self.get_card_translation_id(linha['TextId'])
-				ret.append(linha)
-			return ret[0] if ret else None
-		except Exception:
-			return ability_id
+                for enum_type in self.enums:
+                        cursor.execute('Select Value, LocId  FROM Enums WHERE "Type" = ?', (enum_type,))
+                        for linha in cursor.fetchall():
+                                self.enums[enum_type][linha['Value']] = self.get_card_translation_id(linha['LocId'])
 
-	def get_card_by_id(self, card_id, get_art=True):
-		cursor = self.connections['CardDatabase'].cursor()
-		cursor.execute(f'SELECT * FROM Cards WHERE GrpId = {card_id} LIMIT 1')
-		ret = []
-		for linha in cursor.fetchall():
-			tmp = {}
-			for key, val in linha.items():
-				if 'TextId' in key or 'TitleId' in key:
-					tmp[key.replace("Id", "").lower()] = val if val is None else self.get_card_translation_id(val)
-				elif 'AbilityIds' in key:
-					tmp[key.replace("Id", "").lower()] = val if val is None else self.get_card_abilities(val)
-				elif 'ArtId' in key:
-					tmp['art'] = val if (val is None or not get_art) else self.get_card_art_by_id(val)
-				else:
-					tmp[key] = val
-			ret.append(tmp)
-		return ret[0] if ret else None
+                return True
 
-	def get_card_by_name(self, card_name, limit=None, get_art=True):
-		cursor = self.connections['CardDatabase'].cursor()
+        def _lookup_localization(self, text_id, table_name):
+                cursor = self.connections['CardDatabase'].cursor()
+                cursor.execute(
+                        f'SELECT Loc FROM {table_name} WHERE LocId = ? ORDER BY Formatted DESC LIMIT 1', (text_id,)
+                )
+                row = cursor.fetchone()
+                return row['Loc'] if row else None
 
-		query = (
-			f'SELECT GrpId FROM Cards WHERE TitleId = (select LocId from Localizations WHERE "{self.lang_column}" like ?)' \
-			+ (f' LIMIT ?' if limit else '')
-		)
-		params = [card_name]
-		if limit:
-			params.append(limit)
+        def get_card_translation_id(self, text_id):
+                if text_id is None:
+                        return None
 
-		cursor.execute(query, params)
-		ret = []
-		for linha in cursor.fetchall():
-			ret.append(self.get_card_by_id(linha['GrpId'], get_art))
-		return ret
+                try:
+                        translation = self._lookup_localization(text_id, self.lang_table)
+                        if translation:
+                                return translation
+
+                        if self.default_lang_table and self.default_lang_table != self.lang_table:
+                                fallback = self._lookup_localization(text_id, self.default_lang_table)
+                                if fallback:
+                                        return fallback
+                except Exception:
+                        pass
+
+                return text_id
+
+        def get_card_abilities(self, ability_id):
+                try:
+                        cursor = self.connections['CardDatabase'].cursor()
+                        cursor.execute('select * from Abilities WHERE Id = ?', (ability_id,))
+                        ret = []
+                        for linha in cursor.fetchall():
+                                linha['TextId'] = self.get_card_translation_id(linha['TextId'])
+                                ret.append(linha)
+                        return ret[0] if ret else None
+                except Exception:
+                        return ability_id
+
+        def get_card_by_id(self, card_id, get_art=True):
+                cursor = self.connections['CardDatabase'].cursor()
+                cursor.execute('SELECT * FROM Cards WHERE GrpId = ? LIMIT 1', (card_id,))
+                ret = []
+                for linha in cursor.fetchall():
+                        tmp = {}
+                        for key, val in linha.items():
+                                if 'TextId' in key or 'TitleId' in key:
+                                        tmp[key.replace("Id", "").lower()] = val if val is None else self.get_card_translation_id(val)
+                                elif 'AbilityIds' in key:
+                                        tmp[key.replace("Id", "").lower()] = val if val is None else self.get_card_abilities(val)
+                                elif 'ArtId' in key:
+                                        tmp['art'] = val if (val is None or not get_art) else self.get_card_art_by_id(val)
+                                else:
+                                        tmp[key] = val
+                        ret.append(tmp)
+                return ret[0] if ret else None
+
+        def get_card_by_name(self, card_name, limit=None, get_art=True):
+                cursor = self.connections['CardDatabase'].cursor()
+
+                query = (
+                        f'SELECT GrpId FROM Cards WHERE TitleId IN (select LocId from {self.lang_table} WHERE Loc like ?)'
+                        + (f' LIMIT ?' if limit else '')
+                )
+                params = [card_name]
+                if limit:
+                        params.append(limit)
+
+                cursor.execute(query, params)
+                ret = []
+                for linha in cursor.fetchall():
+                        ret.append(self.get_card_by_id(linha['GrpId'], get_art))
+                return ret
 
 	def find_card_art_file(self, card_id):
 		ret = {
