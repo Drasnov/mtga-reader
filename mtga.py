@@ -15,12 +15,12 @@ class mtga_reader:
 	connections = {}
 	enums = {}
 
-	def __init__(self, mtga_root_dir, lang='enUS'):
+	def __init__(self, mtga_root_dir, lang='en'):
 		self.lang = lang
 		self.mtga_root_dir = mtga_root_dir
-		self.mtga_data_dir = f'{self.mtga_root_dir}MTGA_Data/'
-		self.mtga_assets_dir = f'{self.mtga_data_dir}Downloads/AssetBundle/'
-		self.mtga_raw_dir = f'{self.mtga_data_dir}Downloads/Raw/'
+		self.mtga_data_dir = os.path.join(self.mtga_root_dir, "MTGA_Data")
+		self.mtga_assets_dir = os.path.join(self.mtga_data_dir, "Downloads", "AssetBundle")
+		self.mtga_raw_dir = os.path.join(self.mtga_data_dir, "Downloads", "Raw")
 		self.get_databases()
 		self.get_enums()
 
@@ -32,12 +32,12 @@ class mtga_reader:
 
 	def get_databases(self):
 		try:
-			dbs = ['ArtCropDatabase','CardDatabase','ClientLocalization','altArtCredits','altFlavorTexts','altPrintings','credits','metadatatags']
+			dbs = ['ArtCropDatabase','CardDatabase','ClientLocalization','altArtCredits','altFlavorTexts','credits']
 			for db in dbs:
-				self.connections[db] = sqlite3.connect(max(glob.glob(f"{self.mtga_raw_dir}Raw_{db}_*.mtga"), key=os.path.getctime))
+				self.connections[db] = sqlite3.connect(max(glob.glob(os.path.join(self.mtga_raw_dir, f"Raw_{db}_*.mtga")), key=os.path.getctime))
 				self.connections[db].row_factory = self.dict_factory
 			return True
-		except:
+		except Exception as exc:
 			self.connections = {}
 			return False
 

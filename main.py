@@ -1,6 +1,6 @@
 from mtga import *
 
-mtga = mtga_reader('~/Games/magic-the-gathering-arena/drive_c/Program Files/Wizards of the Coast/MTGA/', lang='enUS')
+mtga = mtga_reader(os.path.join("E:\\", "MTGA"), lang='enUS')
 
 card = mtga.get_card_by_name("captain sisay", get_art=False)[0]
 print(card)
