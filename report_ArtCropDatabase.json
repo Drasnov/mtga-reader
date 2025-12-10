@@ -1,0 +1,172 @@
+[
+  {
+    "file": "E:\\MTGA\\MTGA_Data\\Downloads\\Raw\\Raw_ArtCropDatabase_7b3c1ac0902ab51875925f432af0c9e7.mtga",
+    "size_bytes": 5787648,
+    "modified": 1765249652.1313386,
+    "modified_iso": "2025-12-09T03:07:32.131339+00:00",
+    "schema": {
+      "page_size": 4096,
+      "user_version": 0,
+      "application_id": 0,
+      "auto_vacuum": 0,
+      "encoding": "UTF-8"
+    },
+    "tables": [
+      {
+        "name": "Crops",
+        "sql": "CREATE TABLE Crops(Path TEXT NOT NULL, Format TEXT NOT NULL, X REAL NOT NULL, Y REAL NOT NULL, Z REAL NOT NULL, W REAL NOT NULL, Generated INTEGER NOT NULL, PRIMARY KEY (Path, Format))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "Path",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Format",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "X",
+            "type": "REAL",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 3,
+            "name": "Y",
+            "type": "REAL",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 4,
+            "name": "Z",
+            "type": "REAL",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 5,
+            "name": "W",
+            "type": "REAL",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 6,
+            "name": "Generated",
+            "type": "INTEGER",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_crops",
+            "unique": true,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Path",
+              "Format"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Crops_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "Path",
+              "Format"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 30225
+      },
+      {
+        "name": "Formats",
+        "sql": "CREATE TABLE Formats(Name TEXT PRIMARY KEY UNIQUE NOT NULL, Width INTEGER NOT NULL, Height INTEGER NOT NULL, Fudge REAL NOT NULL, Behavior INTEGER NOT NULL)",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "Name",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Width",
+            "type": "INTEGER",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 2,
+            "name": "Height",
+            "type": "INTEGER",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 3,
+            "name": "Fudge",
+            "type": "REAL",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 4,
+            "name": "Behavior",
+            "type": "INTEGER",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_format",
+            "unique": true,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Name"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Formats_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "Name"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 17
+      }
+    ],
+    "views": []
+  }
+]

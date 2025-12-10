@@ -1,0 +1,1545 @@
+[
+  {
+    "file": "E:\\MTGA\\MTGA_Data\\Downloads\\Raw\\Raw_CardDatabase_5f308e7a60516e3ac3d6c8ca9bbb638a.mtga",
+    "size_bytes": 223277056,
+    "modified": 1765249675.5933385,
+    "modified_iso": "2025-12-09T03:07:55.593338+00:00",
+    "schema": {
+      "page_size": 4096,
+      "user_version": 0,
+      "application_id": 0,
+      "auto_vacuum": 0,
+      "encoding": "UTF-8"
+    },
+    "tables": [
+      {
+        "name": "Abilities",
+        "sql": "CREATE TABLE Abilities(Id INT UNIQUE PRIMARY KEY NOT NULL, BaseId INT NOT NULL, BaseIdNumeral INT, FakeBaseIdNumeral INT NOT NULL, TextId INT NOT NULL, OldSchoolManaText TEXT, Category INT NOT NULL, SubCategory INT NOT NULL, AbilityWord INT NOT NULL, NumericAid INT NOT NULL, RequiresConfirmation INT NOT NULL, PaymentType INT NOT NULL, LoyaltyCost TEXT, LevelRequirement TEXT, Power TEXT, Toughness TEXT, FullyParsed BOOLEAN NOT NULL, IsIntrinsicAbility BOOLEAN NOT NULL, MiscellaneousTerms TEXT, RelevantZones TEXT, EmbeddedActiveAbilityIds TEXT, EmbeddedIntoAbilityIds TEXT, HiddenAbilityIds TEXT, HiddenByAbilityIds TEXT, ReferencedAbilityIds TEXT, ReferencedKeywordNumerals TEXT, ReferencedAbilityTypes TEXT, ModalChildIds TEXT, ModalParentIds TEXT, CostTypes TEXT, Tags TEXT)",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "Id",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "BaseId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 2,
+            "name": "BaseIdNumeral",
+            "type": "INT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 3,
+            "name": "FakeBaseIdNumeral",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 4,
+            "name": "TextId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 5,
+            "name": "OldSchoolManaText",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 6,
+            "name": "Category",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 7,
+            "name": "SubCategory",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 8,
+            "name": "AbilityWord",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 9,
+            "name": "NumericAid",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 10,
+            "name": "RequiresConfirmation",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 11,
+            "name": "PaymentType",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 12,
+            "name": "LoyaltyCost",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 13,
+            "name": "LevelRequirement",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 14,
+            "name": "Power",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 15,
+            "name": "Toughness",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 16,
+            "name": "FullyParsed",
+            "type": "BOOLEAN",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 17,
+            "name": "IsIntrinsicAbility",
+            "type": "BOOLEAN",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 18,
+            "name": "MiscellaneousTerms",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 19,
+            "name": "RelevantZones",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 20,
+            "name": "EmbeddedActiveAbilityIds",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 21,
+            "name": "EmbeddedIntoAbilityIds",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 22,
+            "name": "HiddenAbilityIds",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 23,
+            "name": "HiddenByAbilityIds",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 24,
+            "name": "ReferencedAbilityIds",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 25,
+            "name": "ReferencedKeywordNumerals",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 26,
+            "name": "ReferencedAbilityTypes",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 27,
+            "name": "ModalChildIds",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 28,
+            "name": "ModalParentIds",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 29,
+            "name": "CostTypes",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 30,
+            "name": "Tags",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "sqlite_autoindex_Abilities_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "Id"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 19014
+      },
+      {
+        "name": "AltPrintings",
+        "sql": "CREATE TABLE AltPrintings(AltGrpId INT PRIMARY KEY NOT NULL, IsAltArt BOOLEAN NOT NULL, SkinCode TEXT)",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "AltGrpId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "IsAltArt",
+            "type": "BOOLEAN",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 2,
+            "name": "SkinCode",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "sqlite_autoindex_AltPrintings_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "AltGrpId"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 3193
+      },
+      {
+        "name": "AltToBasePrintings",
+        "sql": "CREATE TABLE AltToBasePrintings(BaseGrpId INT NOT NULL, AltGrpId INT NOT NULL,PRIMARY KEY(\"AltGrpId\",\"BaseGrpId\"))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "BaseGrpId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 1,
+            "name": "AltGrpId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          }
+        ],
+        "indexes": [
+          {
+            "name": "sqlite_autoindex_AltToBasePrintings_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "AltGrpId",
+              "BaseGrpId"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 4137
+      },
+      {
+        "name": "Cards",
+        "sql": "CREATE TABLE Cards(GrpId INT UNIQUE PRIMARY KEY NOT NULL, ArtId INT NOT NULL, ArtPath TEXT NOT NULL, TitleId INT NOT NULL, AltTitleId INT NOT NULL, InterchangeableTitleId INT NOT NULL, FlavorTextId INT NOT NULL, ReminderTextId INT NOT NULL, TypeTextId INT NOT NULL, SubtypeTextId INT NOT NULL, ArtistCredit TEXT, ArtSize INT NOT NULL, Rarity INT NOT NULL, ExpansionCode TEXT, DigitalReleaseSet TEXT, IsToken BOOLEAN NOT NULL, IsPrimaryCard BOOLEAN NOT NULL, IsDigitalOnly BOOLEAN NOT NULL, IsRebalanced BOOLEAN NOT NULL, RebalancedCardGrpId INT NOT NULL, DefunctRebalancedCardGrpId INT NOT NULL, AlternateDeckLimit INT NOT NULL, CollectorNumber TEXT NOT NULL, CollectorMax TEXT NOT NULL, CollectorSuffix TEXT NOT NULL, DraftContent BOOLEAN, UsesSideboard BOOLEAN NOT NULL, OldSchoolManaText TEXT NOT NULL, LinkedFaceType INT NOT NULL, RawFrameDetail TEXT NOT NULL, Watermark TEXT NOT NULL, TextChangeData TEXT NOT NULL, Power TEXT NOT NULL, Toughness TEXT NOT NULL, Colors TEXT NOT NULL, ColorIdentity TEXT NOT NULL, FrameColors TEXT NOT NULL, IndicatorColors TEXT NOT NULL, Types TEXT NOT NULL, Subtypes TEXT NOT NULL, Supertypes TEXT NOT NULL, AbilityIds TEXT NOT NULL, HiddenAbilityIds TEXT NOT NULL, LinkedFaceGrpIds TEXT NOT NULL, LinkedAbilityTemplateCardGrpIds TEXT NOT NULL, AbilityIdToLinkedTokenGrpId TEXT NOT NULL, AbilityIdToLinkedConjurations TEXT NOT NULL, KnownSupportedStyles TEXT NOT NULL, AdditionalFrameDetails TEXT NOT NULL, ExtraFrameDetails TEXT NOT NULL, Tags TEXT NOT NULL, PromoLabel TEXT NOT NULL, Order_LandLast INT, Order_ColorOrder INT, Order_CreaturesFirst INT, Order_ManaCostDifficulty INT, Order_CMCWithXLast INT, Order_Title TEXT, Order_MythicToCommon INT, Order_BasicLandsFirst INT)",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "GrpId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "ArtId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 2,
+            "name": "ArtPath",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 3,
+            "name": "TitleId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 4,
+            "name": "AltTitleId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 5,
+            "name": "InterchangeableTitleId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 6,
+            "name": "FlavorTextId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 7,
+            "name": "ReminderTextId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 8,
+            "name": "TypeTextId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 9,
+            "name": "SubtypeTextId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 10,
+            "name": "ArtistCredit",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 11,
+            "name": "ArtSize",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 12,
+            "name": "Rarity",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 13,
+            "name": "ExpansionCode",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 14,
+            "name": "DigitalReleaseSet",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 15,
+            "name": "IsToken",
+            "type": "BOOLEAN",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 16,
+            "name": "IsPrimaryCard",
+            "type": "BOOLEAN",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 17,
+            "name": "IsDigitalOnly",
+            "type": "BOOLEAN",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 18,
+            "name": "IsRebalanced",
+            "type": "BOOLEAN",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 19,
+            "name": "RebalancedCardGrpId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 20,
+            "name": "DefunctRebalancedCardGrpId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 21,
+            "name": "AlternateDeckLimit",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 22,
+            "name": "CollectorNumber",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 23,
+            "name": "CollectorMax",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 24,
+            "name": "CollectorSuffix",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 25,
+            "name": "DraftContent",
+            "type": "BOOLEAN",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 26,
+            "name": "UsesSideboard",
+            "type": "BOOLEAN",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 27,
+            "name": "OldSchoolManaText",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 28,
+            "name": "LinkedFaceType",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 29,
+            "name": "RawFrameDetail",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 30,
+            "name": "Watermark",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 31,
+            "name": "TextChangeData",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 32,
+            "name": "Power",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 33,
+            "name": "Toughness",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 34,
+            "name": "Colors",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 35,
+            "name": "ColorIdentity",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 36,
+            "name": "FrameColors",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 37,
+            "name": "IndicatorColors",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 38,
+            "name": "Types",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 39,
+            "name": "Subtypes",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 40,
+            "name": "Supertypes",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 41,
+            "name": "AbilityIds",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 42,
+            "name": "HiddenAbilityIds",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 43,
+            "name": "LinkedFaceGrpIds",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 44,
+            "name": "LinkedAbilityTemplateCardGrpIds",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 45,
+            "name": "AbilityIdToLinkedTokenGrpId",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 46,
+            "name": "AbilityIdToLinkedConjurations",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 47,
+            "name": "KnownSupportedStyles",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 48,
+            "name": "AdditionalFrameDetails",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 49,
+            "name": "ExtraFrameDetails",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 50,
+            "name": "Tags",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 51,
+            "name": "PromoLabel",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 52,
+            "name": "Order_LandLast",
+            "type": "INT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 53,
+            "name": "Order_ColorOrder",
+            "type": "INT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 54,
+            "name": "Order_CreaturesFirst",
+            "type": "INT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 55,
+            "name": "Order_ManaCostDifficulty",
+            "type": "INT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 56,
+            "name": "Order_CMCWithXLast",
+            "type": "INT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 57,
+            "name": "Order_Title",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 58,
+            "name": "Order_MythicToCommon",
+            "type": "INT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 59,
+            "name": "Order_BasicLandsFirst",
+            "type": "INT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_card_isPrimaryCard",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "IsPrimaryCard"
+            ]
+          },
+          {
+            "name": "idx_card_expansionCode",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "ExpansionCode"
+            ]
+          },
+          {
+            "name": "idx_card_artId",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "ArtId"
+            ]
+          },
+          {
+            "name": "idx_card_interchangeableTitle",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "InterchangeableTitleId"
+            ]
+          },
+          {
+            "name": "idx_card_title",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "TitleId"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Cards_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "GrpId"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 23370
+      },
+      {
+        "name": "Enums",
+        "sql": "CREATE TABLE Enums(Type TEXT NOT NULL, Value INT NOT NULL, LocId INT NOT NULL, PRIMARY KEY (Type, Value))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "Type",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Value",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_enum",
+            "unique": true,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Type",
+              "Value"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Enums_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "Type",
+              "Value"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 769
+      },
+      {
+        "name": "Localizations",
+        "sql": "CREATE TABLE Localizations(LocId INT NOT NULL, PRIMARY KEY (LocId))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc",
+            "unique": true,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "LocId"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 59067
+      },
+      {
+        "name": "Localizations_deDE",
+        "sql": "CREATE TABLE Localizations_deDE(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_deDE",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_deDE_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 115012
+      },
+      {
+        "name": "Localizations_enUS",
+        "sql": "CREATE TABLE Localizations_enUS(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_enUS",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_enUS_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 95713
+      },
+      {
+        "name": "Localizations_esES",
+        "sql": "CREATE TABLE Localizations_esES(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_esES",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_esES_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 102499
+      },
+      {
+        "name": "Localizations_frFR",
+        "sql": "CREATE TABLE Localizations_frFR(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_frFR",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_frFR_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 117890
+      },
+      {
+        "name": "Localizations_itIT",
+        "sql": "CREATE TABLE Localizations_itIT(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_itIT",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_itIT_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 93758
+      },
+      {
+        "name": "Localizations_jaJP",
+        "sql": "CREATE TABLE Localizations_jaJP(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_jaJP",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_jaJP_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 151785
+      },
+      {
+        "name": "Localizations_koKR",
+        "sql": "CREATE TABLE Localizations_koKR(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_koKR",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_koKR_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 124357
+      },
+      {
+        "name": "Localizations_phyrexian",
+        "sql": "CREATE TABLE Localizations_phyrexian(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_phyrexian",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_phyrexian_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 59129
+      },
+      {
+        "name": "Localizations_ptBR",
+        "sql": "CREATE TABLE Localizations_ptBR(LocId INT NOT NULL, Formatted INT NOT NULL, Loc TEXT, PRIMARY KEY (LocId, Formatted))",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Formatted",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 2
+          },
+          {
+            "cid": 2,
+            "name": "Loc",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "idx_loc_ptBR",
+            "unique": false,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Loc"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Localizations_ptBR_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "LocId",
+              "Formatted"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 112586
+      },
+      {
+        "name": "Prompts",
+        "sql": "CREATE TABLE Prompts(Id INT UNIQUE PRIMARY KEY NOT NULL, LocId INT NOT NULL)",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "Id",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "LocId",
+            "type": "INT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "sqlite_autoindex_Prompts_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "Id"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 3274
+      },
+      {
+        "name": "Versions",
+        "sql": "CREATE TABLE Versions(Type TEXT PRIMARY KEY UNIQUE NOT NULL, Version TEXT NOT NULL)",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "Type",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Version",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "sqlite_autoindex_Versions_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "Type"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 2
+      }
+    ],
+    "views": []
+  }
+]

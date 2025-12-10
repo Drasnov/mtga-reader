@@ -112,12 +112,17 @@ def inspect_database(db_path: Path, include_row_count: bool) -> Dict[str, object
     file_stats = db_path.stat()
 
     with sqlite3.connect(db_path) as connection:
-        tables = connection.execute(
-            "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name"
-        ).fetchall()
-        views = connection.execute(
-            "SELECT name FROM sqlite_master WHERE type = 'view' ORDER BY name"
-        ).fetchall()
+        cursor = connection.cursor()
+        cursor.execute( "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name")
+        tables = cursor.fetchall()
+        # tables = connection.execute(
+        #     "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name"
+        # ).fetchall()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type = 'view' ORDER BY name")
+        views = cursor.fetchall()
+        # views = connection.execute(
+        #     "SELECT name FROM sqlite_master WHERE type = 'view' ORDER BY name"
+        # ).fetchall()
 
         table_details = [inspect_table(connection, row[0], include_row_count) for row in tables]
         view_details = [inspect_view(connection, row[0]) for row in views]

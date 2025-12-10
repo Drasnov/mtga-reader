@@ -1,0 +1,126 @@
+[
+  {
+    "file": "E:\\MTGA\\MTGA_Data\\Downloads\\Raw\\Raw_ClientLocalization_364f61b4019058fd3a7f3aeb12499f83.mtga",
+    "size_bytes": 21942272,
+    "modified": 1765248295.7907364,
+    "modified_iso": "2025-12-09T02:44:55.790736+00:00",
+    "schema": {
+      "page_size": 4096,
+      "user_version": 0,
+      "application_id": 0,
+      "auto_vacuum": 0,
+      "encoding": "UTF-8"
+    },
+    "tables": [
+      {
+        "name": "Loc",
+        "sql": "CREATE TABLE Loc(Key TEXT PRIMARY KEY UNIQUE NOT NULL,Bundle TEXT,enUS TEXT,ptBR TEXT,frFR TEXT,itIT TEXT,deDE TEXT,esES TEXT,jaJP TEXT,koKR TEXT)",
+        "columns": [
+          {
+            "cid": 0,
+            "name": "Key",
+            "type": "TEXT",
+            "not_null": true,
+            "default_value": null,
+            "primary_key_position": 1
+          },
+          {
+            "cid": 1,
+            "name": "Bundle",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 2,
+            "name": "enUS",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 3,
+            "name": "ptBR",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 4,
+            "name": "frFR",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 5,
+            "name": "itIT",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 6,
+            "name": "deDE",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 7,
+            "name": "esES",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 8,
+            "name": "jaJP",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          },
+          {
+            "cid": 9,
+            "name": "koKR",
+            "type": "TEXT",
+            "not_null": false,
+            "default_value": null,
+            "primary_key_position": 0
+          }
+        ],
+        "indexes": [
+          {
+            "name": "Key",
+            "unique": true,
+            "origin": "c",
+            "partial": false,
+            "columns": [
+              "Key"
+            ]
+          },
+          {
+            "name": "sqlite_autoindex_Loc_1",
+            "unique": true,
+            "origin": "pk",
+            "partial": false,
+            "columns": [
+              "Key"
+            ]
+          }
+        ],
+        "foreign_keys": [],
+        "row_count": 18896
+      }
+    ],
+    "views": []
+  }
+]
